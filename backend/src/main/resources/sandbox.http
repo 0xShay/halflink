@@ -1,0 +1,11 @@
+POST http://localhost:8080/sl
+Content-Type: application/json
+
+{
+  "url": "https://docs.spring.io/spring-security/reference/servlet/authentication/index.html",
+  "title": "Spring Security Servlet Authentication"
+}
+
+###
+
+DELETE http://localhost:8080/sl/a0232bf3-245d-4515-8a8b-c10031d21766
