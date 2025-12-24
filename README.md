@@ -1,6 +1,6 @@
 ![Screenshot #1 - Homepage](screenshots/HomePage.png)
 
-# Halflink
+# halflink
 
 A primitive URL shortener service built powered by Spring Boot, with a NextJS frontend.
 
