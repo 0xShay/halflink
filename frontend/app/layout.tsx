@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="nova-oval-regular">
+      <body className="">
         {children}
       </body>
     </html>

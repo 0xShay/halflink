@@ -40,6 +40,15 @@ public class ShortLinkController {
         return savedShortLink;
     }
 
+    @GetMapping("/info/{id}")
+    public ResponseEntity<ShortLink> getShortLink(@PathVariable UUID id) {
+        ShortLink sl = shortLinkRepository.findById(id).orElse(null);
+        if (sl == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(sl);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteShortLink(@PathVariable UUID id) {
         shortLinkRepository.deleteById(id);
