@@ -44,10 +44,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-stone-300 flex min-h-screen flex-col items-center justify-center py-2 text-center">
-      <h1 className="text-3xl font-bold text-red-950">halflink</h1>
-      <p className="text-black">Shorten a link with ease.</p>
-
+    <div>
       <form className="mt-4 flex w-full max-w-xl" onSubmit={handleSubmit}>
         <input
           type="text"

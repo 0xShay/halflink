@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Halflink",
@@ -14,7 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
-        {children}
+        <div className="bg-stone-300 flex min-h-screen flex-col items-center justify-center py-2 text-center">
+          <Link className="cursor-pointer" href="/">
+            <h1 className="text-3xl font-bold text-red-950">halflink</h1>
+            <p className="text-black">Shorten a link with ease.</p>
+          </Link>
+          {children}
+        </div>
       </body>
     </html>
   );

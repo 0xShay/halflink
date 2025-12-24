@@ -59,10 +59,7 @@ export default function Home() {
   }, [params.id]);
 
   return (
-    <div className="bg-stone-300 flex min-h-screen flex-col items-center justify-center py-2 text-center">
-      <h1 className="text-3xl font-bold text-red-950">halflink</h1>
-      <p className="text-black">Shorten a link with ease.</p>
-
+    <div>
       {errorMessage && (
         <p className="mt-4 text-red-800 font-bold">{errorMessage}</p>
       )}
