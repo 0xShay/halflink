@@ -1,18 +1,20 @@
 'use client';
 
 import { useState } from "react";
-import { shortenLink } from "./utils/shortenLink";
+import { shortenLink } from "./utils/api";
 import { Clipboard, Minimize2 } from "lucide-react";
 
 export default function Home() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [shortUrl, setShortUrl] = useState<string | null>(null);
   const [manageUrl, setManageUrl] = useState<string | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setLoading(true);
     try {
       const formData = new FormData(event.currentTarget);
       const longUrl = formData.get("longUrl") as string;
@@ -25,6 +27,8 @@ export default function Home() {
       console.error(err);
       setErrorMessage("Failed to shorten the link. Please try again.");
       setSuccessMessage(null);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -40,9 +44,9 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-stone-300 flex min-h-screen flex-col items-center justify-center py-2">
-      <h1 className="text-3xl font-bold">halflink</h1>
-      <p>Shorten a link with ease.</p>
+    <div className="bg-stone-300 flex min-h-screen flex-col items-center justify-center py-2 text-center">
+      <h1 className="text-3xl font-bold text-red-950">halflink</h1>
+      <p className="text-black">Shorten a link with ease.</p>
 
       <form className="mt-4 flex w-full max-w-xl" onSubmit={handleSubmit}>
         <input
@@ -53,7 +57,8 @@ export default function Home() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={loading}
+          className="bg-red-900 disabled:bg-red-300 text-white px-4 py-2 rounded-r hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <Minimize2 />
         </button>
@@ -78,7 +83,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="flex justify-center w-16 bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex justify-center w-16 bg-red-900 text-white px-4 py-2 rounded-r hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               onClick={() => copyToClipboard(shortUrl, "short link")}
             >
               <Clipboard />
@@ -95,7 +100,7 @@ export default function Home() {
             />
             <button
               type="submit"
-              className="flex justify-center w-16 bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex justify-center w-16 bg-red-900 text-white px-4 py-2 rounded-r hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               onClick={() => copyToClipboard(manageUrl, "manage link")}
             >
               <Clipboard />

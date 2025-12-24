@@ -1,6 +1,7 @@
 package services.shay.shortlink;
 
 import java.security.SecureRandom;
+import java.util.Date;
 
 public class ShortCodeGenerator {
 
@@ -17,8 +18,7 @@ public class ShortCodeGenerator {
     }
 
     public static String generate() {
-        return "abc";
-        // return generate(7);
+         return generate(7);
     }
 
 }

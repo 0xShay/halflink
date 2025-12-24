@@ -9,7 +9,8 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/sl")
+@CrossOrigin(origins = "*")
+@RequestMapping("/l")
 public class ShortLinkController {
 
     private final ShortLinkRepository shortLinkRepository;
