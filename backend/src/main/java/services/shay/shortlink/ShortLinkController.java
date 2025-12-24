@@ -20,7 +20,7 @@ public class ShortLinkController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Void> redirectToUrl(@PathVariable String code) {
+    public ResponseEntity<String> redirectToUrl(@PathVariable String code) {
         ShortLink sl = shortLinkRepository.findByCode(code).orElse(null);
         if (sl != null) {
             sl.setClicks(sl.getClicks() + 1);
@@ -30,7 +30,7 @@ public class ShortLinkController {
                     .location(URI.create(sl.getUrl()))
                     .build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(404).body("The requested link was not found on the server");
     }
 
     @PostMapping

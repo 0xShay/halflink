@@ -2,7 +2,7 @@
 
 import { deleteLink, getLinkInfo } from "@/app/utils/api";
 import { Clipboard } from "lucide-react";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -28,8 +28,7 @@ export default function Home() {
     setLoading(true);
     try {
       await deleteLink(params.id?.toString() || "");
-      setSuccessMessage("Link deleted!");
-      setErrorMessage(null);
+      redirect("/");
     } catch (err) {
       console.error(err);
       setErrorMessage("Failed to delete the link. Please try again.");
