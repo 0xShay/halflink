@@ -2,7 +2,6 @@ package services.shay.shortlink;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 
 import java.util.Date;
 import java.util.UUID;
