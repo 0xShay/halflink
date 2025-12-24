@@ -2,11 +2,12 @@
 
 import { deleteLink, getLinkInfo } from "@/app/utils/api";
 import { Clipboard } from "lucide-react";
-import { redirect, useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const params = useParams();
+  const router = useRouter();
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -16,6 +17,7 @@ export default function Home() {
   const [manageUrl, setManageUrl] = useState<string | null>(null);
 
   const [linkInfo, setLinkInfo] = useState<{
+    longUrl: string;
     shortUrl: string;
     manageUrl: string;
     title: string;
@@ -28,12 +30,11 @@ export default function Home() {
     setLoading(true);
     try {
       await deleteLink(params.id?.toString() || "");
-      redirect("/");
+      router.push("/");
     } catch (err) {
       console.error(err);
       setErrorMessage("Failed to delete the link. Please try again.");
       setSuccessMessage(null);
-    } finally {
       setLoading(false);
     }
   }
@@ -88,6 +89,9 @@ export default function Home() {
               <Clipboard />
             </button>
           </div>
+
+          <p className="mt-4">Redirects to:</p>
+          <p className="font-mono text-sm text-gray-700">{linkInfo.longUrl}</p>
 
           <p className="mt-4">Created at:</p>
           <p className="font-mono text-sm text-gray-700">{new Date(linkInfo.createdAt).toLocaleString()}</p>

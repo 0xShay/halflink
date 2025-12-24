@@ -28,6 +28,7 @@ export async function shortenLink(longUrl: string): Promise<{
 }
 
 export async function getLinkInfo(id: string): Promise<{
+    longUrl: string;
     shortUrl: string;
     manageUrl: string;
     title: string;
@@ -47,6 +48,7 @@ export async function getLinkInfo(id: string): Promise<{
 
     return {
         title: sl.title,
+        longUrl: sl.url,
         shortUrl: API_BASE_URL + "/l/" + sl.code,
         manageUrl: FRONTEND_BASE_URL + "/manage/" + sl.id,
         createdAt: sl.createdAt,
